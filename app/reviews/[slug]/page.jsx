@@ -1,7 +1,7 @@
 import Heading from "@/components/Heading"
 import { getReview } from "@/lib/review"
 
-export default async function ReviewPage({ slug }) {
+export default async function ReviewPage({ params: { slug } }) {
   const review = await getReview(slug)
 
   return (
