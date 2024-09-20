@@ -2,6 +2,10 @@ import Link from "next/link"
 import Heading from "@/components/Heading"
 import { getReviews, getSlugs } from "@/lib/review"
 
+export const metadata = {
+  title: "Reviews"
+}
+
 export const generateStaticParams = async () => {
   const slugs = await getSlugs()
   return slugs.map(slug => ({ slug }))
