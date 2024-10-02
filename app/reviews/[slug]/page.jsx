@@ -2,10 +2,10 @@ import Heading from "@/components/Heading"
 import ShareButton from "@/components/ShareButton"
 import { getReview, getSlugs } from "@/lib/review"
 
-export const generateStaticParams = async () => {
-  const slugs = await getSlugs()
-  return slugs.map(slug => ({ slug }))
-}
+// export const generateStaticParams = async () => {
+//   const slugs = await getSlugs()
+//   return slugs.map(slug => ({ slug }))
+// }
 
 export const generateMetadata = async ({ params: { slug } }) => {
   const review = await getReview(slug)
