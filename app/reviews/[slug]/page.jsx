@@ -1,6 +1,7 @@
 import Heading from "@/components/Heading"
 import ShareButton from "@/components/ShareButton"
 import { getReview, getSlugs } from "@/lib/review"
+import Image from "next/image"
 
 // export const generateStaticParams = async () => {
 //   const slugs = await getSlugs()
@@ -24,9 +25,10 @@ export default async function ReviewPage({ params: { slug } }) {
         <p className="italic pb-2">{review.date}</p>
         <ShareButton />
       </div>
-      <img
+      <Image
         src={review.image}
         alt=""
+        priority
         width={640}
         height={360}
         className="mb-2 rounded"

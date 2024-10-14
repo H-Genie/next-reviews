@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Heading from "@/components/Heading"
 import { getReviews } from "@/lib/review"
+import Image from "next/image"
 
 export const metadata = {
   title: "Reviews"
@@ -13,15 +14,16 @@ export default async function ReviewsPage() {
     <>
       <Heading>Reviews</Heading>
       <ul className="flex flex-row flex-wrap gap-3">
-        {reviews.map(review => (
+        {reviews.map((review, index) => (
           <li
             className="bg-white border shadow rounded w-80 hover:shadow-xl"
             key={review.slug}
           >
             <Link href={`/reviews/${review.slug}`}>
-              <img
+              <Image
                 src={review.image}
                 alt=""
+                priority={index === 0}
                 width={320}
                 height={180}
                 className="rounded-t"
