@@ -3,6 +3,8 @@ import ShareButton from "@/components/ShareButton"
 import { getReview, getSlugs } from "@/lib/review"
 import Image from "next/image"
 
+export const dynamic = "force-dynamic"
+
 // export const generateStaticParams = async () => {
 //   const slugs = await getSlugs()
 //   return slugs.map(slug => ({ slug }))
