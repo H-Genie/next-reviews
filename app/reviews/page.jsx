@@ -9,12 +9,28 @@ export const metadata = {
   title: "Reviews"
 }
 
-export default async function ReviewsPage() {
+const parsePageParams = paramValue => {
+  if (paramValue) {
+    const page = parseInt(paramValue)
+    if (isFinite(page) && page > 0) {
+      return page
+    }
+  }
+  return 1
+}
+
+export default async function ReviewsPage({ searchParams }) {
+  const page = parsePageParams(searchParams.page)
   const reviews = await getReviews()
 
   return (
     <>
       <Heading>Reviews</Heading>
+      <div className="flex gap-2">
+        <Link href={`/reviews?page=${page - 1}`}>&lt;</Link>
+        <span>Page {page}</span>
+        <Link href={`/reviews?page=${page + 1}`}>&gt;</Link>
+      </div>
       <ul className="flex flex-row flex-wrap gap-3">
         {reviews.map((review, index) => (
           <li
