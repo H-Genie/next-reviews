@@ -19,9 +19,11 @@ const parsePageParams = paramValue => {
   return 1
 }
 
+const PAGE_SIZE = 6
+
 export default async function ReviewsPage({ searchParams }) {
   const page = parsePageParams(searchParams.page)
-  const reviews = await getReviews()
+  const reviews = await getReviews(PAGE_SIZE, page)
 
   return (
     <>
