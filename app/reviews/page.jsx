@@ -3,6 +3,7 @@ import Heading from "@/components/Heading"
 import { getReviews } from "@/lib/review"
 import Image from "next/image"
 import PaginationBar from "@/components/PaginationBar"
+import SearchBox from "@/components/SearchBox"
 
 export const dynamic = "force-dynamic"
 
@@ -29,7 +30,10 @@ export default async function ReviewsPage({ searchParams }) {
   return (
     <>
       <Heading>Reviews</Heading>
-      <PaginationBar href={"/reviews"} page={page} pageCount={pageCount} />
+      <div className="flex justify-between pb-3">
+        <PaginationBar href={"/reviews"} page={page} pageCount={pageCount} />
+        <SearchBox />
+      </div>
       <ul className="flex flex-row flex-wrap gap-3">
         {reviews.map((review, index) => (
           <li
