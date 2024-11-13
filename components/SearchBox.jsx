@@ -17,14 +17,16 @@ const reviews = [
   { slug: "a-way-out-2018", title: "A Way Out" }
 ]
 
-export default function SearchBox() {
+export default function SearchBox({ reviews }) {
   const router = useRouter()
   const isClient = useIsClient()
   const [query, setQuery] = useState("")
 
   const handleChange = review => router.push(`/reviews/${review.slug}`)
 
-  const filtered = reviews.filter(review => review.title.includes(query))
+  const filtered = reviews
+    .filter(review => review.title.toLowerCase().includes(query.toLowerCase()))
+    .slice(0, 5)
 
   if (!isClient) return null
   return (
