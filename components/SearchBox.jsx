@@ -10,14 +10,6 @@ import {
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const reviews = [
-  { slug: "hades-2018", title: "Hades" },
-  { slug: "fall-guys", title: "Fall Guys: Ultimate Knockout" },
-  { slug: "disco-elysium", title: "Disco Elysium" },
-  { slug: "dead-cells", title: "Dead Cells" },
-  { slug: "a-way-out-2018", title: "A Way Out" }
-]
-
 export default function SearchBox() {
   const router = useRouter()
   const isClient = useIsClient()
@@ -27,15 +19,24 @@ export default function SearchBox() {
   useEffect(() => {
     if (query.length > 1) {
       ;(async () => {
-        const reviews = await searchReview(query)
+        const response = await fetch(
+          "/api/search?query=" + encodeURIComponent(query)
+        )
+        const reviews = await response.json()
         setReviews(reviews)
       })()
     } else {
       setReviews([])
     }
   }, [query])
-  // reviews
-  const handleChange = review => router.push(`/reviews/${review.slug}`)
+
+  const handleChange = review => {
+    if (review) {
+      router.push(`/reviews/${review.slug}`)
+    } else {
+      return null
+    }
+  }
 
   if (!isClient) return null
   return (
