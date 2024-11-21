@@ -34,7 +34,7 @@ export default function SearchBox() {
       setReviews([])
     }
   }, [query])
-
+  // reviews
   const handleChange = review => router.push(`/reviews/${review.slug}`)
 
   if (!isClient) return null
